@@ -9,13 +9,21 @@ useOnlineRecon = true;
 
 addpath('prepareAnalysis');
 addpath('sessionParameters');
+addpath('assessData');
+addpath('tools');
 
 try
+    clear dcprintfig; % clears persistent figure counter 
+    
     % copy DICOM dir from archive
     % system(['cp -R ' fullfile(dicomStorageDir,dicomSessionName) ' ' ...
     %    dicomBaseDir]);
     
     prepareAnalysis(dicomDir, sesname, useOnlineRecon);
+    
+   
+    
+    
 catch ME
     disp(ME)
 end
