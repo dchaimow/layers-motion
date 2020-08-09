@@ -178,6 +178,17 @@ TR = extractSameParameter(funcParameters,@(c) c.RepetitionTime);
 
 rmdir(niftiDir,'s');
 
+% remove nifti directory from file names
+[~,anatNiftiFileBaseName,~] = fileparts(anatNiftiFileBaseName);
+[~,magNiftiFileBaseName,~] = fileparts(magNiftiFileBaseName);
+[~,phaNiftiFileBaseName,~] = fileparts(phaNiftiFileBaseName);
+[~,swiMagNiftiFileBaseName,~] = fileparts(swiMagNiftiFileBaseName);
+[~,swiPhaNiftiFileBaseName,~] = fileparts(swiPhaNiftiFileBaseName);
+[~,swiMagNormNiftiFileBaseName,~] = fileparts(swiMagNormNiftiFileBaseName);
+for zz=1:length(funcNiftiFileBaseName)
+    [~,funcNiftiFileBaseName{zz},~] = fileparts(funcNiftiFileBaseName{zz});
+end
+
 %% create m file
 str0 = '%% Define parameters';
 str1 = ['dataDir = ''' fullfile(sesParentDir,sesname) ''';'];
