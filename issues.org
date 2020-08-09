@@ -3,3 +3,4 @@ This file contains an unorganized list with ideas, issues and todos.
 * modify offline recon
 * info is not extracted in online recon (including echo spacing for unwarping)
 * change configuration scripts to functions that return a parameter structure
+* use tags/states in issue file (bug, idea, todo, important, if time allows, open, closed, ...)
