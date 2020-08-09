@@ -19,9 +19,10 @@ try
     % system(['cp -R ' fullfile(dicomStorageDir,dicomSessionName) ' ' ...
     %    dicomBaseDir]);
     
-    prepareAnalysis(dicomDir, sesname, useOnlineRecon);
+    % prepareAnalysis(dicomDir, sesname, useOnlineRecon);
     
-   
+    assessSNR(sesname);
+    assessVolumeCorrelation(sesname);
     
     
 catch ME
