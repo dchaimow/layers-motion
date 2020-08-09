@@ -1,21 +1,21 @@
 % Define parameters
 dataDir = '/Data/ses/m18150811';
 
-anatFile= 'm18150811_anat.nii';
+anatFile= 'm18150811_anat';
 
-magFile = 'm18150811_mag.nii';
-phaFile = 'm18150811_pha.nii';
+magFile = 'm18150811_mag';
+phaFile = 'm18150811_pha';
 
-swiMagFile = 'm18150811_swimag.nii';
-swiPhaFile = 'm18150811_swipha.nii';
-swiMagNormFile = 'm18150811_swimagnorm.nii';
+swiMagFile = 'm18150811_swimag';
+swiPhaFile = 'm18150811_swipha';
+swiMagNormFile = 'm18150811_swimagnorm';
 
-scanlist = {'m18150811_func_01.nii';
-'m18150811_func_02.nii';
-'m18150811_func_03.nii';
-'m18150811_func_04.nii';
-'m18150811_func_05.nii';
-'m18150811_func_06.nii'};
+scanlist = {'m18150811_func_01';
+'m18150811_func_02';
+'m18150811_func_03';
+'m18150811_func_04';
+'m18150811_func_05';
+'m18150811_func_06'};
 
 stimFiles = {'dcm18150811_CohInc_2Dens_1_P1.mat';
 'dcm18150811_CohInc_2Dens_2_P2.mat';

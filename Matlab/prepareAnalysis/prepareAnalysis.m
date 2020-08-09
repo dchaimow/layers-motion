@@ -144,7 +144,7 @@ stimFileName = cell(1,length(funcNiftiFileBaseName));
 zScan = 1;
 for zStim=1:length(aa)
     scanStartTime = datevec(funcParameters{zScan}.AcquisitionTime);
-    hdr = cbiReadNiftiHeader([funcNiftiFileBaseName{zScan} '.nii']);
+    hdr = cbiReadNiftiHeader([funcNiftiFileBaseName{zScan} '.hdr']);
     scanDuration = hdr.dim(5) * funcParameters{z}.RepetitionTime;
     
     s = load(fullfile(aa(zStim).folder,aa(zStim).name));
@@ -176,6 +176,7 @@ end
 % extract consistent TR
 TR = extractSameParameter(funcParameters,@(c) c.RepetitionTime);
 
+% remove nifti dir
 rmdir(niftiDir,'s');
 
 % remove nifti directory from file names
@@ -192,15 +193,15 @@ end
 %% create m file
 str0 = '%% Define parameters';
 str1 = ['dataDir = ''' fullfile(sesParentDir,sesname) ''';'];
-str2 = ['anatFile= ''' anatNiftiFileBaseName '.nii' ''';'];
-str3 = ['magFile = ''' magNiftiFileBaseName '.nii' ''';'];
-str4 = ['phaFile = ''' phaNiftiFileBaseName '.nii' ''';'];
-str5 = ['swiMagFile = ''' swiMagNiftiFileBaseName '.nii' ''';'];
-str6 = ['swiPhaFile = ''' swiPhaNiftiFileBaseName '.nii' ''';'];
-str7 = ['swiMagNormFile = ''' swiMagNormNiftiFileBaseName '.nii' ''';'];
+str2 = ['anatFile= ''' anatNiftiFileBaseName  ''';'];
+str3 = ['magFile = ''' magNiftiFileBaseName  ''';'];
+str4 = ['phaFile = ''' phaNiftiFileBaseName  ''';'];
+str5 = ['swiMagFile = ''' swiMagNiftiFileBaseName  ''';'];
+str6 = ['swiPhaFile = ''' swiPhaNiftiFileBaseName  ''';'];
+str7 = ['swiMagNormFile = ''' swiMagNormNiftiFileBaseName ''';'];
 str8 = 'scanlist = {';
 for zz=1:length(funcNiftiFileBaseName)
-    str8 = [str8 '''' funcNiftiFileBaseName{zz} '.nii' ''';\n'];
+    str8 = [str8 '''' funcNiftiFileBaseName{zz}  ''';\n'];
 end
 str8(end-2:end-1)= '};';
 str8 = str8(1:end-1);
@@ -250,6 +251,10 @@ if exist('requestedNiftiFileBaseName','var')
     niftiFileBaseName = requestedNiftiFileBaseName;
 end
 
+% convert to NIFTI pair
+system(['export FSLDIR=' fslDir ...
+    ';export PATH=$PATH:' fullfile(fslDir,'bin') ...
+    ';fslchfiletype NIFTI_PAIR ' niftiFileBaseName]);
 end
 
 function dcOfflineRecon2Nifti(nSlices, datFile, niftiFile, diniftiPath)
