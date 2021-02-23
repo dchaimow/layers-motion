@@ -144,7 +144,7 @@ stimFileName = cell(1,length(funcNiftiFileBaseName));
 zScan = 1;
 for zStim=1:length(aa)
     scanStartTime = datevec(funcParameters{zScan}.AcquisitionTime);
-    hdr = cbiReadNiftiHeader([funcNiftiFileBaseName{zScan} '.hdr']);
+    hdr = cbiReadNiftiHeader([funcNiftiFileBaseName{zScan} '.nii']);
     scanDuration = hdr.dim(5) * funcParameters{z}.RepetitionTime;
     
     s = load(fullfile(aa(zStim).folder,aa(zStim).name));
@@ -270,7 +270,7 @@ sliceOrder = [nSlices/2 + 1 : -1 : 1 nSlices:-1:nSlices/2+2];
 
 system([diniftiPath ' -f n2 -s ' ...
     num2str(nSlices) ' *.dcm ' niftiFile]);
-[img,hdr] = cbiReadNifti([niftiFile '.hdr']);
+[img,hdr] = cbiReadNifti([niftiFile '.nii']);
 
 a = dir('*.dcm');
 dcminf = dicominfo(a(1).name);
@@ -301,7 +301,7 @@ else
 end
 
 hdr = cbiSetNiftiQform(cbiCreateNiftiHeader(data),hdr.qform44);
-cbiWriteNifti([niftiFile '.hdr'],data,hdr);
+cbiWriteNifti([niftiFile '.nii'],data,hdr);
 %hdr = cbiSetNiftiQform(cbiCreateNiftiHeader(dataPh),hdr.qform44);
 %cbiWriteNifti([niftiFile '_ph.hdr'],dataPh,hdr);
 info.dicom = dcminf;

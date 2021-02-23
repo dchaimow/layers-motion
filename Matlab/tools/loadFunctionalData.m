@@ -8,23 +8,23 @@ addpath(genpath(mrToolsPath));
 dims = zeros(nScans,4);
 for zScans=1:nScans
     basename = fullfile(dataDir,'func',scanlist{zScans});
-    if exist([basename '_uw_mc_reg.hdr'],'file')
+    if exist([basename '_uw_mc_reg.nii'],'file')
         basename = [basename '_uw_mc_reg'];
     end
-    if exist([basename '_uw.hdr'],'file')
+    if exist([basename '_uw.nii'],'file')
         basename = [basename '_uw'];
     end
-    if exist([basename '_mc_reg.hdr'],'file')
+    if exist([basename '_mc_reg.nii'],'file')
         basename = [basename '_mc_reg'];
     end
     dataFName{zScans} = basename;
-    hdr = cbiReadNiftiHeader([dataFName{zScans} '.hdr']);
+    hdr = cbiReadNiftiHeader([dataFName{zScans} '.nii']);
     dims(zScans,:) = hdr.dim(2:5);
 end
 
 % load data
 if exist('scanNumber','var')
-    data = cbiReadNifti(dataFName{scanNumber});
+    data = cbiReadNifti([dataFName{scanNumber} '.nii']);
     data(:,:,:,1) = nan;
 else
     % NOTE: what if nT differs between scans?
@@ -32,7 +32,7 @@ else
     data = zeros([dims(1,1:3) nT*nScans]);
     for zScans=1:nScans
         data(:,:,:,(1:nT)+(zScans-1)*nT) = ...
-            cbiReadNifti(dataFName{zScans});
+            cbiReadNifti([dataFName{zScans},'.nii']);
         data(:,:,:,1+(zScans-1)*nT) = nan;
     end
 end
