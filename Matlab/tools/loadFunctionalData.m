@@ -1,6 +1,8 @@
-function data = loadFunctionalData(sesname,scanNumber)
+function [data, hdr] = loadFunctionalData(sesname,scanNumber)
 config;
 eval(sesname);
+
+addpath(genpath(mrToolsPath));
 
 % get file names and number of volumes
 dims = zeros(nScans,4);
@@ -25,6 +27,7 @@ if exist('scanNumber','var')
     data = cbiReadNifti(dataFName{scanNumber});
     data(:,:,:,1) = nan;
 else
+    % NOTE: what if nT differs between scans?
     nT = dims(1,4);
     data = zeros([dims(1,1:3) nT*nScans]);
     for zScans=1:nScans
@@ -32,4 +35,5 @@ else
             cbiReadNifti(dataFName{zScans});
         data(:,:,:,1+(zScans-1)*nT) = nan;
     end
+end
 end

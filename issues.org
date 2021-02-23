@@ -4,3 +4,12 @@ This file contains an unorganized list with ideas, issues and todos.
 * info is not extracted in online recon (including echo spacing for unwarping)
 * change configuration scripts to functions that return a parameter structure
 * use tags/states in issue file (bug, idea, todo, important, if time allows, open, closed, ...)
+* GLM analysis of CRF data
+* rename remaining functions that start with dc?
+* make sure to have sufficient number of GLM diagnostic plots
+* implement additional predictors in GLM
+** motion correction parameters
+** differential
+** linear trend
+** high pass filter
+* handle outliers

@@ -11,6 +11,8 @@ addpath('prepareAnalysis');
 addpath('sessionParameters');
 addpath('assessData');
 addpath('tools');
+addpath('functionalAnalyses');
+addpath('dataTransformFunctions');
 
 try
     clear dcprintfig; % clears persistent figure counter 
@@ -24,7 +26,36 @@ try
     assessSNR(sesname);
     assessVolumeCorrelation(sesname);
     
+    %% image based functional analysis
+    % time course on 70 percentile
+    showFullTimeCourse(sesname);
     
+    % event related on 70 percentile
+    analyzeEv
+        extractROIIntensityPrctile(data,prctileThreshold,normalizeFlag)
+    
+    % GLM on image
+    
+    
+    % activation on image (from event related)? - normalization?
+    % (event related w/o ROI?)
+    
+    %% layer based functional analysis
+    
+    % layer definition
+    
+    % event related on ROI of grid
+    
+    % event related f(depth)
+    
+    % event related f(position)
+    
+    % GLM and activation on layer grid
+    
+    % GLM and activatio f(position)
+    
+    % GLM and activatio f(depth)
+      
 catch ME
     disp(ME)
 end
