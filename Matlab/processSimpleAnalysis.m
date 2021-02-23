@@ -18,14 +18,14 @@ addpath('tools');
 addpath('functionalAnalyses');
 addpath('dataTransformFunctions');
 
-try
+%try
     clear dcprintfig; % clears persistent figure counter 
     
     % copy DICOM dir from archive
     % system(['cp -R ' fullfile(dicomStorageDir,dicomSessionName) ' ' ...
     %    dicomBaseDir]);
     
-    % prepareAnalysis(dicomDir, sesname, useOnlineRecon);
+    %prepareAnalysis(dicomDir, sesname, useOnlineRecon);
     
     assessSNR(sesname);
     assessVolumeCorrelation(sesname);
@@ -35,8 +35,7 @@ try
     showFullTimeCourse(sesname);
     
     % event related on 70 percentile
-    analyzeEv
-        extractROIIntensityPrctile(data,prctileThreshold,normalizeFlag)
+    analyzeEventRelated70PrcVoxels(sesname);
     
     % GLM on image
     
@@ -60,6 +59,6 @@ try
     
     % GLM and activatio f(depth)
       
-catch ME
-    disp(ME)
-end
+% catch ME
+%     disp(ME)
+% end

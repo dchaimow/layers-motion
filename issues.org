@@ -13,3 +13,8 @@ This file contains an unorganized list with ideas, issues and todos.
 ** linear trend
 ** high pass filter
 * handle outliers
+* m46300811 run 8 some DICOMS missing?
+the online reconstructed DICOMs of run 8 contain only 200 instead of
+223 volume, however the raw data file is the same size as the others
+(maybe offline recon would contain the remaining volumes?)
+for now while using online recon exclude run 8 from analysis
