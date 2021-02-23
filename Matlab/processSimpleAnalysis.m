@@ -1,9 +1,13 @@
 % runs most basic analysis
 dicomStorageDir = '/Volumes/data/MRIData/CMRRDATA/';
-dicomBaseDir = '/Data/DICOM/';
+dicomBaseDir = '~/Data/layers-motion/DICOM/';
 
-sesname = 'm18150811';
-dicomSessionName = '20110815-ST001-dcm18150811';
+%sesname = 'm18150811';
+sesname = 'm46300811';
+
+%dicomSessionName = '20110815-ST001-dcm18150811';
+dicomSessionName = '20110830-ST001-dcm46300811';
+
 dicomDir = fullfile(dicomBaseDir,dicomSessionName);
 useOnlineRecon = true;
 
